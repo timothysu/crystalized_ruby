@@ -3,6 +3,7 @@ require_relative '../ext/inflector'
 
 class CrystalizedInflectorTest < Minitest::Test
   def test_ordinals
+    assert_equal ((3.14).cr_square), 9.8596
     assert_equal 1.cr_ordinalize    , "1st"
     assert_equal 2.cr_ordinalize    , "2nd"
     assert_equal 1002.cr_ordinalize , "1002nd"

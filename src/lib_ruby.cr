@@ -20,9 +20,9 @@ lib LibRuby
 
   # integers
   fun rb_num2int(value : VALUE) : Int32
-  fun rb_num2dbl(value : VALUE) : Float32
+  fun rb_num2dbl(value : VALUE) : Float64
   fun rb_int2inum(value : Int32) : VALUE
-  fun rb_float_new(value : Float32) : VALUE
+  fun rb_float_new(value : Float64) : VALUE
 
   # strings
   fun rb_str_to_str(value : VALUE) : VALUE
@@ -293,9 +293,11 @@ struct Int32
 end
 struct Float
   def self.from_ruby(float)
+    #This is real broken
     LibRuby.rb_num2dbl(float)
   end
   def to_ruby
+    #This seems to be reading some random memory
     LibRuby.rb_float_new(self)
   end
 end

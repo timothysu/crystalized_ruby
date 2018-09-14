@@ -24,10 +24,13 @@ fun init = Init_inflector
   LibRuby.rb_define_method(string, "cr_humanize",      ->Wrapper.humanize,      0)
   LibRuby.rb_define_method(string, "cr_upcase_first",  ->Wrapper.upcase_first,  0)
   LibRuby.rb_define_method(string, "cr_foreign_key",   ->Wrapper.foreign_key,   0)
-  
+
 
   integer = LibRuby.rb_define_class("Integer", LibRuby.rb_cNumeric)
   LibRuby.rb_define_method(integer, "cr_ordinal",      ->Wrapper.ordinal,       0)
   LibRuby.rb_define_method(integer, "cr_ordinalize",   ->Wrapper.ordinalize,    0)
+
+  float = LibRuby.rb_define_class("Float", LibRuby.rb_cNumeric)
+  LibRuby.rb_define_method(float, "cr_square",   ->Wrapper.square,    0)
 
 end

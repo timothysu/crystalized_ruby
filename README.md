@@ -21,7 +21,7 @@ This work is being done on the `repo-split` branch.
 | String      | :white_check_mark: | :white_check_mark: |
 | Symbol      | :x:                | :white_check_mark: |
 | Integer     | :white_check_mark: | :white_check_mark: |
-| Float       | :x:                | :x:                |
+| Float       | :white_check_mark: | :white_check_mark: |
 | Hash        | :x:                | :white_check_mark: |
 | Array       | :white_check_mark: | :white_check_mark: |
 | Regexp      | :white_check_mark: | :white_check_mark: |

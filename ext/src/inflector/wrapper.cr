@@ -79,4 +79,14 @@ module Wrapper
     int = Int.from_ruby(self)
     int.ordinalize.to_ruby
   end
+
+  def self.ordinalize(self : LibRuby::VALUE)
+    int = Int.from_ruby(self)
+    int.ordinalize.to_ruby
+  end
+
+  def self.square(self : LibRuby::VALUE)
+    flt = Float.from_ruby(self)
+    (flt**2).to_ruby
+  end
 end
