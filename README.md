@@ -32,12 +32,9 @@ This work is being done on the `repo-split` branch.
 # TODO
 
 - [ ] get all types working
-  + [ ] float rb <=> cr
-  + [ ] negative integers rb => cr
   + [ ] hash rb => cr
   + [ ] something for symbol rb => cr
-- [ ] be able to build gem and use (even just for checking type conversions)
-- [ ] separate repo into crystal shard for lib_ruby related, generator gem, and fast_inflector gem
+- [ ] easy gem building
 
 ## Updates
 
