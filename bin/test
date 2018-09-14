@@ -2,7 +2,7 @@
 
 require "bundler/setup"
 # First, build the extension by running `make`
-# this is a big mess, just a bunch of random stuff to test out. 
+# this is a big mess, just a bunch of random stuff to test out.
 
 require_relative './../ext/crystalized_ruby'
 class String
@@ -24,6 +24,7 @@ puts 1.23.cr_boomerang
 puts -1.cr_boomerang
 puts 4321.cr_boomerang
 puts 0.cr_boomerang
+puts 3.14159265358.cr_square
 
 
 puts '~~~~~~~~~~ non-ascii ~~~~~~~~~'
@@ -91,8 +92,8 @@ puts crm.fibonacci(10)
 puts '~~~~~~~~~ class < module ~~~~~~~~~~'
 g = Geode::Stuff.new
 puts g.salute('world')
-puts g.cr_hash.inspect 
-puts g.cr_array.inspect 
+puts g.cr_hash.inspect
+puts g.cr_array.inspect
 
 
 puts '~~~~~~~~~ misc ~~~~~~~~~~'
