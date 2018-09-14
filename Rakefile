@@ -12,7 +12,7 @@ task :default => :test
 desc "compile the Crystal native extensions"
 task :compile do
   puts "compiling native extensions"
-  `cd ext && crystal deps && make clean && make`
+  `cd ext && shards install && make clean && make`
 end
 
 desc "cleaning up compiled binaries"
@@ -20,4 +20,3 @@ task :clean do
   puts "cleaning up extensions"
   `cd ext && make clean`
 end
-

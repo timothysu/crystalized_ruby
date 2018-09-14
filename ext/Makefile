@@ -16,7 +16,7 @@ install: all
 all: shards crystalized_ruby.so inflector.so
 
 shards:
-	crystal deps
+	shards install
 
 crystalized_ruby.so: crystalized_ruby.o
 	$(CC) -shared $^ -o $@ $(LIBCRYSTAL) -L$(LIBRARY_PATH) -L$(LIBRUBY) $(LIBS) $(LDFLAGS)
@@ -43,7 +43,7 @@ CRYSTAL_FLAGS = -dynamic -bundle -Wl,-undefined,dynamic_lookup
 all: shards crystalized_ruby.bundle inflector.bundle
 
 shards:
-	crystal deps
+	shards install
 
 crystalized_ruby.bundle: crystalized_ruby.cr
 	crystal $^ --release --link-flags "$(CRYSTAL_FLAGS)" -o $@
