@@ -1,7 +1,6 @@
 require "inflector/core_ext"
 
 module Wrapper
-
   def self.squish(self : LibRuby::VALUE)
     str = String.from_ruby(self)
     str.squish.to_ruby

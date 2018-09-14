@@ -20,7 +20,7 @@ This work is being done on the `repo-split` branch.
 | ----------- | :-------------: | :-------------: |
 | String      | :white_check_mark: | :white_check_mark: |
 | Symbol      | :x:                | :white_check_mark: |
-| Integer     | :white_check_mark:* | :white_check_mark: |
+| Integer     | :white_check_mark: | :white_check_mark: |
 | Float       | :x:                | :x:                |
 | Hash        | :x:                | :white_check_mark: |
 | Array       | :white_check_mark: | :white_check_mark: |
@@ -45,10 +45,9 @@ See [updates.md](updates.md)
 
 # Problems
 
-* Negative integers don't convert correctly
 * Floats aren't working
 * I am having trouble with defining methods with various parameter counts. There's additional Crystal libs just for defining methods with zero or two parameters. This is obnoxious and the biggest annoyance I have right now, so I'd love to fix that soon.
-* I can't get a proc as a C callback working. There's some broken code commented out. Would love assistance from someone more knowledgeable. Right now this is for converting a Ruby hash to a Crystal hash. 
+* I can't get a proc as a C callback working. There's some broken code commented out. Would love assistance from someone more knowledgeable. Right now this is for converting a Ruby hash to a Crystal hash.
 
 # How to get this working
 

@@ -1,3 +1,5 @@
+# Crystal wrapper for LibRuby
+
 lib LibRuby
   type VALUE = Void*
   type METHOD_FUNC = VALUE -> VALUE
@@ -20,6 +22,7 @@ lib LibRuby
   fun rb_num2int(value : VALUE) : Int32
   fun rb_num2dbl(value : VALUE) : Float32
   fun rb_int2inum(value : Int32) : VALUE
+  fun rb_float_new(value : Float32) : VALUE
 
   # strings
   fun rb_str_to_str(value : VALUE) : VALUE
@@ -51,7 +54,7 @@ lib LibRuby
   fun rb_define_class_under(parent : VALUE, name : UInt8*, super : VALUE) : VALUE
   fun rb_define_module(name : UInt8*, super : VALUE) : VALUE
   fun rb_define_module_under(parent : VALUE, name : UInt8*, super : VALUE) : VALUE
-  
+
   # methods
   fun rb_define_method(klass : VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
   fun rb_define_singleton_method(klass : VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
@@ -118,7 +121,7 @@ module RubyImporter
     when "Fixnum"
       Int32.from_ruby(obj)
     when "Bignum", "Integer"
-      # puts Int.from_ruby(obj).inspect
+      puts Int.from_ruby(obj).inspect
       Int.from_ruby(obj)
     when "Regexp"
       Regex.from_ruby(obj)
@@ -293,6 +296,6 @@ struct Float
     LibRuby.rb_num2dbl(float)
   end
   def to_ruby
-    to_i.to_ruby
+    LibRuby.rb_float_new(self)
   end
 end

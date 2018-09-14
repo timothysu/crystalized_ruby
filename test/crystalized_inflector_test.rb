@@ -7,14 +7,14 @@ class CrystalizedInflectorTest < Minitest::Test
     assert_equal 2.cr_ordinalize    , "2nd"
     assert_equal 1002.cr_ordinalize , "1002nd"
     assert_equal 1003.cr_ordinalize , "1003rd"
-    assert_equal -11.cr_ordinalize  , "-11th"
-    assert_equal -1001.cr_ordinalize, "-1001st"
+    assert_equal (-11).cr_ordinalize  , "-11th"
+    assert_equal (-1001).cr_ordinalize, "-1001st"
     assert_equal 1.cr_ordinal       , "st"
     assert_equal 2.cr_ordinal       , "nd"
     assert_equal 1002.cr_ordinal    , "nd"
     assert_equal 1003.cr_ordinal    , "rd"
-    assert_equal -11.cr_ordinal     , "th"
-    assert_equal -1001.cr_ordinal   , "st"
+    assert_equal (-11).cr_ordinal     , "th"
+    assert_equal (-1001).cr_ordinal   , "st"
   end
 
   def test_blank
@@ -119,4 +119,3 @@ class CrystalizedInflectorTest < Minitest::Test
     assert_equal "Admin::Post".cr_foreign_key, "post_id"
   end
 end
-
