@@ -53,10 +53,10 @@ class CrystalizedInflectorTest < Minitest::Test
   end
 
   def test_camelize
-    assert_equal "active_record".cr_camelize       , "ActiveRecord"
-    assert_equal "active_record".cr_camelize       , "activeRecord"
-    assert_equal "active_record/errors".cr_camelize, "ActiveRecord::Errors"
-    assert_equal "active_record/errors".cr_camelize, "activeRecord::Errors"
+    assert_equal "active_record".cr_camelize(:upper)       , "ActiveRecord"
+    assert_equal "active_record".cr_camelize(:lower)       , "activeRecord"
+    assert_equal "active_record/errors".cr_camelize(:upper), "ActiveRecord::Errors"
+    assert_equal "active_record/errors".cr_camelize(:lower), "activeRecord::Errors"
   end
 
   def test_titleize
@@ -102,10 +102,10 @@ class CrystalizedInflectorTest < Minitest::Test
   end
 
   def test_humanize
-    assert_equal "employee_salary".cr_humanize, "Employee salary"
-    assert_equal "author_id".cr_humanize      , "Author"
-    assert_equal "author_id".cr_humanize      , "author"
-    assert_equal "_id".cr_humanize            , "Id"
+    assert_equal "employee_salary".cr_humanize(true), "Employee salary"
+    assert_equal "author_id".cr_humanize(true)      , "Author"
+    assert_equal "author_id".cr_humanize(false)      , "author"
+    assert_equal "_id".cr_humanize(true)            , "Id"
   end
 
   def test_upcase_first
@@ -114,9 +114,11 @@ class CrystalizedInflectorTest < Minitest::Test
     assert_equal "".cr_upcase_first                 , ""
   end
 
-  def test_foreign_key
-    assert_equal "Message".cr_foreign_key    , "message_id"
-    assert_equal "Message".cr_foreign_key    , "messageid"
-    assert_equal "Admin::Post".cr_foreign_key, "post_id"
+  def test_foreign_key_true
+    assert_equal "Message".cr_foreign_key(true)    , "message_id"
+  end
+
+  def test_foreign_key_false
+    assert_equal "Message".cr_foreign_key(false)    , "messageid"
   end
 end

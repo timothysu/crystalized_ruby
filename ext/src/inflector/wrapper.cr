@@ -20,10 +20,10 @@ module Wrapper
     str = String.from_ruby(self)
     str.singularize(locale).to_ruby
   end
-  def self.camelize(self : LibRuby::VALUE)#, first_letter : LibRuby::VALUE)
-    first_letter = :upper
+  def self.camelize(self : LibRuby::VALUE, first_letter : LibRuby::VALUE)
+    # condition = Symbol.from_ruby(first_letter)
     str = String.from_ruby(self)
-    str.camelize(first_letter).to_ruby
+    str.camelize(true).to_ruby
   end
   def self.titleize(self : LibRuby::VALUE)
     str = String.from_ruby(self)
@@ -57,19 +57,19 @@ module Wrapper
     str = String.from_ruby(self)
     str.classify.to_ruby
   end
-  def self.humanize(self : LibRuby::VALUE)#, capitalize : LibRuby::VALUE)
-    capitalize = true
+  def self.humanize(self : LibRuby::VALUE, capitalize : LibRuby::VALUE)
+    condition = Bool.from_ruby(capitalize)
     str = String.from_ruby(self)
-    str.humanize(capitalize).to_ruby
+    str.humanize(condition).to_ruby
   end
   def self.upcase_first(self : LibRuby::VALUE)
     str = String.from_ruby(self)
     str.upcase_first.to_ruby
   end
-  def self.foreign_key(self : LibRuby::VALUE)#, separate_class_name_and_id_with_underscore : LibRuby::VALUE)
-    separate_class_name_and_id_with_underscore = true
+  def self.foreign_key(self : LibRuby::VALUE, underscore : LibRuby::VALUE)
+    condition = Bool.from_ruby(underscore)
     str = String.from_ruby(self)
-    str.foreign_key(separate_class_name_and_id_with_underscore).to_ruby
+    str.foreign_key(condition).to_ruby
   end
   def self.ordinal(self : LibRuby::VALUE)
     int = Int.from_ruby(self)

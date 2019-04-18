@@ -8,3 +8,4 @@
 *.bundle
 ext/libs/*
 ext/.shards/
+.ruby-*

@@ -2,7 +2,7 @@
 
 lib LibRuby
   type VALUE = Void*
-  type METHOD_FUNC = VALUE -> VALUE
+  alias METHOD_FUNC = Void*
   type ID = Void*
 
   $rb_cObject : VALUE
@@ -13,6 +13,7 @@ lib LibRuby
   fun rb_type(value : VALUE) : Int32 # can't get this working :/
   fun rb_any_to_s(value : VALUE) : UInt8*
   fun rb_class2name(value : VALUE) : UInt8*
+  fun rb_obj_classname(value : VALUE) : UInt8*
   # fun rb_type(value : VALUE) : UInt8*
   fun rb_funcall(value : VALUE, method : ID, argc : Int32) : VALUE
   # fun rb_nil_p(value : VALUE) : Boolean # not sure how to handle this
@@ -59,27 +60,6 @@ lib LibRuby
   fun rb_define_method(klass : VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
   fun rb_define_singleton_method(klass : VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
   fun rb_define_module_function(module : VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
-end
-
-lib LibRuby1
-  type METHOD_FUNC = LibRuby::VALUE, LibRuby::VALUE -> LibRuby::VALUE # STUB
-  # fun rb_define_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
-  # fun rb_define_singleton_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
-  # fun rb_define_module_function(module : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
-end
-
-lib LibRuby2
-  type METHOD_FUNC = LibRuby::VALUE, LibRuby::VALUE, LibRuby::VALUE -> LibRuby::VALUE
-  # fun rb_define_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
-  # fun rb_define_singleton_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
-  # fun rb_define_module_function(module : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
-end
-
-lib LibRuby3
-  type METHOD_FUNC = LibRuby::VALUE, LibRuby::VALUE, LibRuby::VALUE, LibRuby::VALUE -> LibRuby::VALUE
-  # fun rb_define_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
-  # fun rb_define_singleton_method(klass : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
-  # fun rb_define_module_function(module : LibRuby::VALUE, name : UInt8*, func : METHOD_FUNC, argc : Int32)
 end
 
 module RubyImporter
@@ -153,9 +133,24 @@ module RubyImporter
   end
 end
 
+# class RubySymbol < String
+#   def to_ruby
+#     LibRuby.rb_id2sym(LibRuby.rb_intern(self))
+#   end
+#   def self.from_ruby(sym : LibRuby::VALUE)
+#     str    = LibRuby.rb_funcall(sym, RubyImporter::RB_method_to_s, 0)
+#     rb_str = LibRuby.rb_str_to_str(str)
+#     c_str  = LibRuby.rb_string_value_cstr(pointerof(rb_str))
+#     cr_str = new(c_str)
+#   end
+# end
 struct Symbol
   def to_ruby
     LibRuby.rb_id2sym(LibRuby.rb_intern(self.to_s))
+  end
+  
+  def self.from_ruby(sym : LibRuby::VALUE)
+    # str = 
   end
 end
 
